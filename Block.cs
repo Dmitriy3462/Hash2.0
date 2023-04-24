@@ -24,7 +24,7 @@ namespace Hash
             PreviousHash = "11111";
             User = "Dmitriy";
         }
-        public Block(string data, Block block)
+        public Block(string data,string user ,Block block)
         {
             if (string.IsNullOrEmpty(data))
             {
@@ -36,6 +36,15 @@ namespace Hash
                 throw new ArgumentNullException("Empty Argument Block", nameof(block));
             }
 
+            if(string.IsNullOrEmpty(user))
+            {
+                throw new ArgumentNullException("Empty argument user", nameof(user));
+            }
+            Data = data;
+            User = user;
+            PreviousHash = block.Hash;
+            Created = DateTime.UtcNow;
+            id = block.id + 1;
 
         }
     }
